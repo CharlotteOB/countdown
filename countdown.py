@@ -1,3 +1,5 @@
+#COUNTDOWN
+
 #Creating my list of  words to reference
 
 text_file = open("words.txt", "r")
@@ -28,8 +30,7 @@ def timeout():
 randomletters = random.sample(cons, 6) + random.sample(vow, 3)
 
 def newround():
-    print("Here are your letters, goodluck!")    
-    print(randomletters) 
+    print("Here are your letters, goodluck!")  
     t = Timer(1 * 30, timeout)
     t.start()
 
@@ -41,15 +42,17 @@ p1points = 0
 p2points = 0
 
 #round 1
+randomletters1 = random.sample(cons, 6) + random.sample(vow, 3)
 newround()
+print(randomletters1)
 #have to put the following line in to delay the following code, because newround takes 30 secs to run
 time.sleep(31)
 p1guess = input("Ok " + p1name + ", what word have you got? ")
 p2guess = input("Ok " + p2name + ", what word have you got? ")
 p1guessletters = list(p1guess)
 p2guessletters = list(p2guess)
-p1guesscorrect = set(p1guessletters).issubset(randomletters)
-p2guesscorrect = set(p2guessletters).issubset(randomletters)
+p1guesscorrect = set(p1guessletters).issubset(randomletters1)
+p2guesscorrect = set(p2guessletters).issubset(randomletters1)
 #below calculates points for round one - checks against the dict
 if p1guess in newlistofwords and p1guesscorrect is True:
     print("Yes! " + p1name + ", " + p1guess + " is a correct answer")
@@ -84,14 +87,16 @@ print("So at the end of round 1 " + p1name + " has " + str(p1points) + " points"
 time.sleep(5)
 print("Ok, now for round 2, are you ready?")
 time.sleep(5)
+randomletters2 = random.sample(cons, 6) + random.sample(vow, 3)
 newround()
+print(randomletters2)
 time.sleep(31)
 p1guess = input("Ok " + p1name + ", what word have you got? ")
 p2guess = input("Ok " + p2name + ", what word have you got? ")
 p1guessletters = list(p1guess)
 p2guessletters = list(p2guess)
-p1guesscorrect = set(p1guessletters).issubset(randomletters)
-p2guesscorrect = set(p2guessletters).issubset(randomletters)
+p1guesscorrect = set(p1guessletters).issubset(randomletters2)
+p2guesscorrect = set(p2guessletters).issubset(randomletters2)
 #below calculates points for round one - checks against the dict
 if p1guess in newlistofwords and p1guesscorrect is True:
     print("Yes! " + p1name + ", " + p1guess + " is a correct answer")
@@ -281,7 +286,7 @@ if (int(targetno)-int(p2guess))<(int(targetno)-int(p1guess)):
 #make player 2 prove they did it right
     p2working = eval(input("tell us how you got your answer:"))
 #if their workings = their guess then points for them
-    if eval(int(p2working)) == int(p2guess):
+    if int(eval(p2working)) == int(p2guess):
         print("Well done! 10 points for " + p2name)
         p2points = p2points + 10
 #if not, lets give player 1 a chance
@@ -289,7 +294,7 @@ if (int(targetno)-int(p2guess))<(int(targetno)-int(p1guess)):
         print("Unlucky, 0 points for you, " + p1name + " can you do any better?")
         p1working = eval(input("tell us how you got your answer:"))
 #if player 1 is correct then points
-        if eval(p1working) == p1guess:
+        if int(eval(p1working)) == int(p1guess):
                 print("Well done! 10 points for " + p1name)
                 p1points = p1points + 10
 #if not then no points for anyone
@@ -307,7 +312,7 @@ if (int(targetno)-int(p1guess)) == (int(targetno)-int(p2guess)):
     p1working = eval(input(p1name + " tell us how you got your answer:"))
     p2working = eval(input(p2name + " tell us how you got your answer:"))
 #if their workings = their guess then points for them
-    if eval(int(p1working)) == p1guess:
+    if int(eval(p1working)) == p1guess:
         print("Well done! 10 points for " + p1name)
         p1points = p1points + 10
 #lets give player 2 a chance
@@ -328,15 +333,17 @@ time.sleep(5)
 print("This is the final  round...")
 
 #round 5
+randomletters3 = random.sample(cons, 6) + random.sample(vow, 3)
 newround()
+print(randomletters3)
 #have to put the following line in to delay the following code, because newround takes 30 secs to run
 time.sleep(31)
 p1guess = input("Ok " + p1name + ", what word have you got? ")
 p2guess = input("Ok " + p2name + ", what word have you got? ")
 p1guessletters = list(p1guess)
 p2guessletters = list(p2guess)
-p1guesscorrect = set(p1guessletters).issubset(randomletters)
-p2guesscorrect = set(p2guessletters).issubset(randomletters)
+p1guesscorrect = set(p1guessletters).issubset(randomletters3)
+p2guesscorrect = set(p2guessletters).issubset(randomletters3)
 #below calculates points for round one - checks against the dict
 if p1guess in newlistofwords and p1guesscorrect is True:
     print("Yes! " + p1name + ", " + p1guess + " is a correct answer")
@@ -364,7 +371,6 @@ else:
     else:
         print(p2name + "You seem to have used random letters to create a word that isn't even in the dictionary, please try harder next time" )
 
-#end of the game
 print("So at the end of the game " + p1name + " has " + str(p1points) + " points" + " and " + p2name + " has " + str(p2points) + " points")
 if p1points>p2points:
     print("Congratulations " + p1name + " you are the winner with " + p1points + " points")
@@ -372,3 +378,4 @@ elif p1points<p2points:
     print("Congratulations " + p2name + " you are the winner with " + p2points + " points")
 else:
     print("It's a draw! ")
+    
